@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>ZON - PICTURE</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    #menubar {
+      background: white;
+      height: 160px;
+    }
+
+    #menubar ul {
+      margin: 0;
+      text-align: center;
+      width: 100%;
+      font-size: 17px;
+      padding: 0px 0px;
+    }
+
+    #menubar ul li {
+      display: inline-block;
+      list-style-type: none;
+      padding: 50px;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+
+    #menubar ul li a {
+      color: black;
+      text-decoration: none;
+    }
+
+    #menubar ul li a:hover {
+      color: rgb(15, 29, 68);
+    }
+
+    #menubar1 {
+      background: rgb(51, 134, 167);
+      height: 40px;
+    }
+
+    #menubar1 ul {
+      margin: 0;
+      text-align: right;
+      width: 100%;
+      font-size: 17px;
+      padding: 0px 0px;
+    }
+
+    #menubar1 ul li {
+      display: inline-block;
+      list-style-type: none;
+      padding: 20px;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+
+    #menubar1 ul li a {
+      color: white;
+      text-decoration: none;
+    }
+
+    #menubar1 ul li a:hover {
+      color: rgb(12, 57, 75);
+    }
+
+    #menubar2 {
+      background: white;
+      height: 50px;
+    }
+
+    #menubar2 ul {
+      margin: 0;
+      text-align: center;
+      width: 100%;
+      font-size: 20px;
+      padding: 0px 0px;
+    }
+
+    #menubar2 ul li {
+      display: inline-block;
+      list-style-type: none;
+      padding: 15px;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+
+    #menubar2 ul li a {
+      color: black;
+      text-decoration: none;
+    }
+
+    #menubar2 ul li a:hover {
+      position: relative;
+      color: rgb(12, 57, 75);
+    }
+
+    #menubar2 ul li a:hover::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 2px;
+      background-color: rgb(12, 57, 75);
+    }
+
+    #title {
+      font-size: 40px;
+    }
+
+    #menubar3 {
+      background: white;
+      height: 50px;
+
+    }
+
+    #menubar3 ul {
+      margin: 0;
+      text-align: center;
+      width: 100%;
+      font-size: 20px;
+      padding: 0px 0px;
+    }
+
+    #menubar3 ul li {
+      display: inline-block;
+      list-style-type: none;
+      letter-spacing: 5px;
+      padding: 15px 150px;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+
+    #menubar3 ul li a {
+      color: black;
+      text-decoration: none;
+    }
+
+    #menubar3 ul li a:hover {
+      color: rgb(12, 57, 75);
+    }
+
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: venn-extended, sans-serif;
+      font-weight: 300;
+      font-style: normal;
+      background-color: black;
+      color: black;
+      min-height: 100vh;
+    }
+
+    .hero-section {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: space-around;
+      min-height: 10vh;
+    }
+
+    .loop-container {
+      margin-top: 90px;
+      white-space: nowrap;
+      font-size: 5vw;
+      letter-spacing: 1px;
+    }
+
+    .item {
+      position: absolute;
+    }
+
+    .image-section {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      min-height: 55vh;
+    }
+
+    .second-loop-container {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+    }
+
+    .images-wrapper {
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+      padding-right: 2rem;
+      position: absolute;
+    }
+
+    .image-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      width: 300px;
+      height: 440px;
+    }
+
+    .image-container img {
+      object-fit: cover;
+      min-width: 100%;
+      min-height: 100%;
+    }
+
+    .item {
+      position: absolute;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <nav id="menubar1">
+    <ul>
+      <li><a href="https://www.unesco.org/en" target="_blank">Unesco</a></li> |
+      <li><a href="https://heritage.unesco.or.kr/" target="_blank">Kor. Unesco</a></li> |
+      <li><a href="https://www.unesco.or.kr/" target="_blank">UNESCO Korean Committee</a></li>
+    </ul>
+  </nav>
+
+  <nav id="menubar">
+    <ul>
+      <li id="title"><a href="pj.html" target="_parent" style="text-align: center;">Enviornment - Zon</a></li>
+    </ul>
+  </nav>
+  <hr>
+  <nav id="menubar2">
+    <ul>
+      <li><a href="amazon.html" target="_parent">Amazon</a></li>
+      <li><a href="map.html" target="_parent">Maps</a></li>
+      <li><a href="picture.html" target="_parent">Picture</a></li>
+    </ul>
+  </nav>
+  <hr>
+
+  <section class="hero-section">
+    <div class="loop-container">
+      <div class="item">| A Beautiful Environment |</div>
+      <div class="item">| A Beautiful Environment |</div>
+    </div>
+  </section>
+  <section class="image-section">
+    <div class="second-loop-container">
+      <div class="images-wrapper">
+        <div class="image-container"><img src="C:\Users\aeji4\OneDrive\바탕 화면\웹프\project\pic1.png" alt=""></div>
+        <div class="image-container"><img src="C:\Users\aeji4\OneDrive\바탕 화면\웹프\project\pic2.png" alt=""></div>
+        <div class="image-container"><img src="C:\Users\aeji4\OneDrive\바탕 화면\웹프\project\pic3.png" alt=""></div>
+        <div class="image-container"><img src="C:\Users\aeji4\OneDrive\바탕 화면\웹프\project\pic4.png" alt=""></div>
+        <div class="image-container"><img src="C:\Users\aeji4\OneDrive\바탕 화면\웹프\project\pic5.png" alt=""></div>
+      </div>
+      <div class="images-wrapper">
+        <div class="image-container"><img src="C:\Users\aeji4\OneDrive\바탕 화면\웹프\project\pic6.png" alt=""></div>
+        <div class="image-container"><img src="C:\Users\aeji4\OneDrive\바탕 화면\웹프\project\pic7.png" alt=""></div>
+        <div class="image-container"><img src="C:\Users\aeji4\OneDrive\바탕 화면\웹프\project\pic8.png" alt=""></div>
+        <div class="image-container"><img src="C:\Users\aeji4\OneDrive\바탕 화면\웹프\project\pic9.png" alt=""></div>
+        <div class="image-container"><img src="C:\Users\aeji4\OneDrive\바탕 화면\웹프\project\pic10.png" alt=""></div>
+      </div>
+    </div>
+  </section>
+
+
+  <hr>
+  <nav id="menubar">
+    <ul>
+      <li id="title"><a href="pj.html" target="_parent" style="text-align: center;">My Project</a></li>
+    </ul>
+  </nav>
+
+  <script>
+    class LoopingElement {
+      constructor(element, currentTranslation, speed) {
+        this.element = element
+        this.currentTranslation = currentTranslation
+        this.speed = speed
+        this.direction = true
+        this.scrollTop = 0
+        this.metric = 100
+
+        this.lerp = {
+          current: this.currentTranslation,
+          target: this.currentTranslation,
+          ease: 0.2
+        }
+
+        this.events()
+        this.render()
+      }
+
+      events() {
+        window.addEventListener("scroll", (e) => {
+          let direction = window.pageYOffset || document.documentElement.scrollTop
+          if (direction > this.scrollTop) {
+            this.direction = true
+            this.lerp.target += this.speed * 5
+          } else {
+            this.direction = false
+            this.lerp.target -= this.speed * 5
+          }
+          this.scrollTop = direction <= 0 ? 0 : direction
+        })
+      }
+
+      lerpFunc(current, target, ease) {
+        this.lerp.current = current * (1 - ease) + target * ease
+      }
+
+      right() {
+        this.lerp.target += this.speed
+        if (this.lerp.target > this.metric) {
+          this.lerp.current -= this.metric * 2
+          this.lerp.target -= this.metric * 2
+        }
+      }
+
+      left() {
+        this.lerp.target -= this.speed
+        if (this.lerp.target < -this.metric) {
+          this.lerp.current -= -this.metric * 2
+          this.lerp.target -= -this.metric * 2
+        }
+      }
+
+      animate() {
+        this.direction ? this.right() : this.left()
+        this.lerpFunc(this.lerp.current, this.lerp.target, this.lerp.ease)
+
+        this.element.style.transform = `translateX(${this.lerp.current}%)`
+      }
+
+      render() {
+        this.animate()
+        window.requestAnimationFrame(() => this.render())
+      }
+    }
+
+    let elements = document.querySelectorAll(".item")
+
+    new LoopingElement(elements[0], 0, 0.1)
+    new LoopingElement(elements[1], -100, 0.1)
+
+    let imagesArray = document.querySelectorAll(".images-wrapper")
+
+    new LoopingElement(imagesArray[0], 0, 0.1);
+    new LoopingElement(imagesArray[1], -100, 0.1);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ZON - AMAZON</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #menubar {
+            background: white;
+            height: 160px;
+        }
+
+        #menubar ul {
+            margin: 0;
+            text-align: center;
+            width: 100%;
+            font-size: 17px;
+            padding: 0px 0px;
+        }
+
+        #menubar ul li {
+            display: inline-block;
+            list-style-type: none;
+            padding: 50px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+
+        #menubar ul li a {
+            color: black;
+            text-decoration: none;
+        }
+
+        #menubar ul li a:hover {
+            color: rgb(15, 29, 68);
+        }
+
+        #menubar1 {
+            background: rgb(51, 134, 167);
+            height: 40px;
+
+        }
+
+        #menubar1 ul {
+            margin: 0;
+            text-align: right;
+            width: 100%;
+            font-size: 17px;
+            padding: 0px 0px;
+        }
+
+        #menubar1 ul li {
+            display: inline-block;
+            list-style-type: none;
+            padding: 20px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+
+        #menubar1 ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        #menubar1 ul li a:hover {
+            color: rgb(12, 57, 75);
+        }
+
+        #menubar2 {
+            background: white;
+            height: 50px;
+        }
+
+        #menubar2 ul {
+            margin: 0;
+            text-align: center;
+            width: 100%;
+            font-size: 20px;
+            padding: 0px 0px;
+        }
+
+        #menubar2 ul li {
+            display: inline-block;
+            list-style-type: none;
+            padding: 15px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+
+        #menubar2 ul li a {
+            color: black;
+            text-decoration: none;
+        }
+
+        #menubar2 ul li a:hover {
+            position: relative;
+            color: rgb(12, 57, 75);
+        }
+
+        #menubar2 ul li a:hover::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background-color: rgb(12, 57, 75);
+        }
+
+        #title {
+            font-size: 40px;
+        }
+
+        #main {
+            margin: 20px 100px 0px 100px;
+            height: 500px;
+        }
+
+        div iframe {
+            width: 500px;
+            height: 650px;
+            margin: 0px 30px 0px 30px;
+        }
+
+        .flip-card {
+            background-color: transparent;
+            border: none;
+            width: 500px;
+            height: 220px;
+            perspective: 1000px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 160%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        .flip-card-front {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: solid black 3px;
+            border-radius: 5%;
+            background-color: white;
+            color: black;
+        }
+
+        .flip-card-back {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5%;
+            background-color: rgb(51, 134, 167);
+            border: solid black 3px;
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .Introduce-Card-Img {
+            width: 35%;
+            margin-bottom: 2%;
+        }
+
+        div {
+            display: inline-block;
+        }
+
+        .collapsible {
+            background-color: #4d4c4c;
+            color: white;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .active,
+        .collapsible:hover {
+            background-color: #6b6a6a;
+        }
+
+        .content {
+            padding: 0 18px;
+            max-height: 0;
+            width: 100%;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+            background-color: #f1f1f1;
+        }
+
+        .collapsible:after {
+            content: '\002B';
+            color: white;
+            font: bold;
+            float: right;
+            margin-left: 5px;
+        }
+
+        .active:after {
+            content: "\2212";
+        }
+
+        .three h1 {
+            font-size: 28px;
+            font-weight: 500;
+            letter-spacing: 0;
+            line-height: 1.5em;
+            padding-bottom: 15px;
+            position: relative;
+        }
+
+        .three h1:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 5px;
+            width: 55px;
+            background-color: #111;
+        }
+
+        .three h1:after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 2px;
+            height: 1px;
+            width: 95%;
+            max-width: 255px;
+            background-color: #333;
+        }
+
+        @import url('https://fonts.googleapis.com/css?family=Montez');
+        @import url(https://fonts.googleapis.com/css?family=Francois+One);
+
+        body {
+            background: #f5f7fa;
+            margin: 10px;
+            padding: 10px;
+        }
+
+        blockquote {
+            display: block;
+            background: #fff;
+            padding: 15px 20px 15px 45px;
+            margin: 0 0 20px;
+            position: relative;
+
+            font-family: Georgia, serif;
+            font-size: 14px;
+            line-height: 1.2;
+            color: #666;
+
+            -moz-box-shadow: 2px 2px 15px #ccc;
+            -webkit-box-shadow: 2px 2px 15px #ccc;
+            box-shadow: 2px 2px 15px #ccc;
+
+            border-left-style: solid;
+            border-left-width: 15px;
+            border-right-style: solid;
+            border-right-width: 2px;
+        }
+
+        blockquote::before {
+            content: "\201C";
+
+            font-family: Georgia, serif;
+            font-size: 60px;
+            font-weight: bold;
+            color: #999;
+
+            position: absolute;
+            left: 10px;
+            top: 5px;
+
+        }
+
+        blockquote::after {
+            content: "";
+        }
+
+        blockquote a {
+            text-decoration: none;
+            background: #eee;
+            cursor: pointer;
+            padding: 0 3px;
+            color: #c76c0c;
+        }
+
+        blockquote a:hover {
+            color: #666;
+        }
+
+        blockquote em {
+            font-style: italic;
+        }
+
+        blockquote.default {
+            border-left-color: #656d77;
+            border-right-color: #434a53;
+        }
+
+        blockquote.grapefruit {
+            border-left-color: #ed5565;
+            border-right-color: #da4453;
+        }
+
+        blockquote.bittersweet {
+            border-left-color: #fc6d58;
+            border-right-color: #e95546;
+        }
+
+        blockquote.sunflower {
+            border-left-color: #ffcd69;
+            border-right-color: #f6ba59;
+        }
+
+        blockquote.grass {
+            border-left-color: #9fd477;
+            border-right-color: #8bc163;
+        }
+
+        blockquote.mint {
+            border-left-color: #46cfb0;
+            border-right-color: #34bc9d;
+        }
+
+        blockquote.aqua {
+            border-left-color: #4fc2e5;
+            border-right-color: #3bb0d6;
+        }
+
+        blockquote.bluejeans {
+            border-left-color: #5e9de6;
+            border-right-color: #4b8ad6;
+        }
+
+        blockquote.lavander {
+            border-left-color: #ad93e6;
+            border-right-color: #977bd5;
+        }
+
+        blockquote.pinkrose {
+            border-left-color: #ed87bd;
+            border-right-color: #d870a9;
+        }
+
+        blockquote.light {
+            border-left-color: #f5f7fa;
+            border-right-color: #e6e9ed;
+        }
+
+        blockquote.gray {
+            border-left-color: #ccd1d8;
+            border-right-color: #aab2bc;
+        }
+
+        .heading {
+            font-family: Montez;
+            text-align: center;
+            font-size: 30px;
+        }
+
+        code {
+            color: #da4453;
+        }
+
+        span {
+            font-weight: bolder;
+
+        }
+
+        h1 {
+            text-align: left;
+            font-size: 16px;
+            font-family: 'Francois One', sans-serif;
+        }
+
+        span.Cdefault {
+            color: #434a53;
+        }
+
+        span.Cgrapefruit {
+            color: #da4453;
+        }
+
+        span.Cbittersweet {
+            color: #e95546;
+        }
+
+        span.Csunflower {
+            color: #f6ba59;
+        }
+
+        span.Cgrass {
+            color: #8bc163;
+        }
+
+        span.Cmint {
+            color: #34bc9d;
+        }
+
+
+        .group {
+            text-align: center;
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .item {
+            width: 7vw;
+            height: 75vh;
+            background-position: center;
+            background-size: 75vh;
+            margin: 1vw;
+            border-radius: 3vw;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .buttons {
+            margin: 10%;
+            text-align: center;
+        }
+
+        .btn-hover {
+            width: 200px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            margin: 20px;
+            height: 55px;
+            text-align: center;
+            border: none;
+            background-size: 300% 100%;
+
+            border-radius: 50px;
+            -o-transition: all .4s ease-in-out;
+            -webkit-transition: all .4s ease-in-out;
+            transition: all .4s ease-in-out;
+        }
+
+        .btn-hover:hover {
+            background-position: 100% 0;
+            -o-transition: all .4s ease-in-out;
+            -webkit-transition: all .4s ease-in-out;
+            transition: all .4s ease-in-out;
+        }
+
+        .btn-hover:focus {
+            outline: none;
+        }
+
+        .btn-hover.color-7 {
+            background-image: linear-gradient(to right, #6253e1, #852D91, #A3A1FF, #F24645);
+            box-shadow: 0 4px 15px 0 rgba(126, 52, 161, 0.75);
+        }
+
+        #fixed {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            width: 190px;
+            padding: 5px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <nav id="menubar1">
+        <ul>
+            <li><a href="https://www.unesco.org/en" target="_blank">Unesco</a></li> |
+            <li><a href="https://heritage.unesco.or.kr/" target="_blank">Kor. Unesco</a></li> |
+            <li><a href="https://www.unesco.or.kr/" target="_blank">UNESCO Korean Committee</a></li>
+          </ul>
+    </nav>
+
+    <nav id="menubar">
+        <ul>
+            <li id="title"><a href="pj.html" target="_parent" style="text-align: center;">Enviornment - Zon</a></li>
+        </ul>
+    </nav>
+    <hr>
+    <nav id="menubar2">
+        <ul>
+            <li><a href="amazon.html" target="_parent" id="under">Amazon</a></li>
+            <li><a href="map.html" target="_parent">Maps</a></li>
+            <li><a href="picture.html" target="_parent">Picture</a></li>
+        </ul>
+    </nav>
+    <hr>
+
+    <br><br>
+
+    <table border="0">
+        <tr>
+            <td rowspan="2">
+                <div>
+                    <video autoplay muted controls>
+                        <source
+                            src="C:\Users\aeji4\OneDrive\바탕 화면\웹프\project\Amazon 4k - The World’s Largest Tropical Rainforest Part 2 _ Jungle Sounds _ Scenic Relaxation Film.mp4"
+                            type="video/mp4">
+                    </video>
+                </div>
+            </td>
+            <td>
+                <div class="align-Center-row">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="C:\Users\aeji4\OneDrive\바탕 화면\웹프\project\earth.jpg"
+                                    class="Introduce-Card-Img" alt="introduce-repick-icon">
+                                <h1 class="Tmoney-fontsize-200">The Lungs of The Earth</h1>
+                            </div>
+                            <div class="flip-card-back">
+                                <h1 class="Tmoney-fontsize-150 MarginBottom-5"> 지구의 허파</h1>
+                                <p class="KOTRA-fontsize-100">아마존은 세계에서 가장 넓고,
+                                    <br>가장 다양한 생물이 사는 열대 우림입니다.
+                                    <br>이곳은 우리나라 넓이의 70배입니다.
+                                    <br>세계의 주요 삼림 자원이며
+                                    <br>엄청난 숲을 가질 수 있는 이유는 바로 거대한 아마존 강이 있기 떄문이다.
+                                    <br>지구에서 만들어지는 산소의 약 1/3을 생산해 내는 곳
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="align-Center-row">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="C:\Users\aeji4\OneDrive\바탕 화면\웹프\project\animal.jpg"
+                                    class="Introduce-Card-Img" alt="introduce-repick-icon">
+                                <h1 class="Tmoney-fontsize-200">ecological diversity</h1>
+                            </div>
+                            <div class="flip-card-back">
+                                <h1 class="Tmoney-fontsize-150 MarginBottom-5"> 생태계의 다양성</h1>
+                                <p class="KOTRA-fontsize-100">열대 우림에는 3백만 종 이상의 생명이 살고 있으며
+                                    <br> 2,500종이 넘는 나무가 존재합니다.
+                                    <br>아마존에서 600종에 달하는
+                                    <br>새로운 동물종을 발견했습니다.
+                                    <br>브라질의 과학연구소에서는
+                                    <br>60종의 새로운 식물 외에 301종을 발견했습니다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div class="three">
+                    <h1>아마존 파괴</h1>
+                </div>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <blockquote class="default">
+                    <h1><span class="Cdefault">숲 기능 저하</span> - '지구의 허파'로 불리는 아마존 숲의 3분의 1 이상이 숲의 기능을 제대로 하지 못한다.</h1>
+                    <p>인간이 촉발한 기후변화로 아마존 숲의 75%가 복원력을 상실했다는 분석</p>
+                </blockquote>
+
+                <blockquote class="grapefruit">
+                    <h1><span class="Cgrapefruit">브라질 원주민</span> - 브라질 원주민은 어떻게 숲을 되살릴까</h1>
+                    <p>원주민들이 직접 벌을 키우고 자생 나무를 심으면서 숲이 예전과 많이 달라졌다.</p>
+                </blockquote>
+
+
+                <blockquote class="bittersweet">
+                    <h1><span class="Cbittersweet">지구 허파가 아니다</span> - 아마존에서 큰 산불이 한 달이 넘게이어졌다</h1>
+                    <p>산불로 배출되는 이산화탄소는 인류가 배출하는 양 중 약 12%를 차지한다. 아마존 열대 우림이 파괴되면 나무가 이산화탄소를 흡수할 수 없을 뿐만 아니라 썩을 때 혹은 산불로
+                        탈 때 나무가 저장했던 이산화탄소를 다시 배출한다.</p>
+                </blockquote>
+
+                <blockquote class="sunflower">
+                    <h1><span class="Csunflower">아마존 포유류</span> - 기후 변화로 위협받는 아마존 포유류</h1>
+                    <p>아마존의 생물 다양성은 기후 변화의 영향에 매우 민감하다.</p>
+                </blockquote>
+
+                <blockquote class="grass">
+                    <h1><span class="Cgrass">아마존 숲 면적</span> - 파괴의 주원인인 불법 채굴, 벌채</h1>
+                    <p>대통령은 불법적인 아마존 산림벌채를 근절하기 위해 환경 범죄에 대한 법 집행 강화 등의 조치가 담긴 '아마존 산림벌채 예방 및 통제를 위한 행동계획'(PPCDAm)을 공개
+                    </p>
+                </blockquote>
+
+                <blockquote class="mint">
+                    <h1><span class="Cmint">멸종 위기</span> - '아마존의 비명'…동식물 1만여종 멸종 위기</h1>
+                    <p>아마존 열대우림이 인간에 의한 숲 파괴와 기후변화로 신음을 넘어 비명을 내고 있다.</p>
+                </blockquote>
+
+            </td>
+            <td>
+                <div class="group" id="imgg">
+                    <div class="item"
+                        style="background-image: url(https://search.pstatic.net/sunny/?src=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F51%2F86%2F99%2F518699302d5bd9610c1206d40e7a8b41.jpg&type=a340)">
+                    </div>
+                    <div class="item"
+                        style="background-image: url(https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20110131_93%2Fprns2217_1296485536408PeWIT_JPEG%2F3806434128_4e3106dbfb.jpg&type=a340)">
+                    </div>
+                    <div class="item"
+                        style="background-image: url(https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxOTAzMTZfMTg4%2FMDAxNTUyNzA2NjczMzMy.FKVmkR0x-beeTsOTYY1ljSR4ODHYpLjskZlCHBiKA3Qg.d0_4gQlwtrstDT078wTo5wbptlqOsq5ijOZ5vfe64ksg.JPEG.bulnaby404%2F50648312_10156240572433931_1215510710096756736_n.jpg&type=a340)">
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <div class="three">
+                    <h1>인간이 하는 노력</h1>
+                </div>
+                <button type="button" class="collapsible" onclick="collapse(this);">국립공원과 보호구역 설정</button>
+                <div class="content">
+                    <p>아마존 지역에는 국립공원과 보호구역이 설립되어 있습니다. <br>
+                        이러한 지역은 생물 다양성 보호와 지속 가능한 자원 활용을 위한<br>
+                        특별한 보호 조치를 취하고 있습니다. 이러한 영역은 <br>
+                        야생 동물과 식물, 그리고 그들의 서식지를 보호하고 연구, 교육 및 <br>
+                        지속 가능한 관광 등을 통해 관심을 끌고 있습니다.</p>
+                </div>
+                <button type="button" class="collapsible" onclick="collapse(this);">불법 벌목 및 산림 파괴 대응</button>
+                <div class="content">
+                    <p>아마존 열대우림의 주요 위협 중 하나는 불법 벌목과<br>
+                        산림 파괴입니다. 정부와 국제 단체들은 이러한 문제에 대응하기 위해 <br>
+                        강화된 법규와 감시 체제를 도입하고, 적발된 벌목업체를 처벌하고 <br>
+                        불법 목재 거래를 방지하는 등의 노력을 기울이고 있습니다.</p>
+                </div>
+                <button type="button" class="collapsible" onclick="collapse(this);">지속 가능한 산림 관리</button>
+                <div class="content">
+                    <p>아마존 지역에서는 지속 가능한 산림 관리와 재식림 프로그램을 통해 <br>
+                        산림 자원의 보호와 복원을 추구하고 있습니다. 이를 위해 지역 주민들과 <br>
+                        협력하여 지속 가능한 목재 생산 및 경제 개발 모델을 적용하고, <br>
+                        적절한 산림 관리 방침을 도입하고 있습니다.</p>
+                </div>
+                <button type="button" class="collapsible" onclick="collapse(this);">생물 다양성 모니터링과 연구</button>
+                <div class="content">
+                    <p>아마존 지역에서는 생물 다양성 모니터링과 연구에 투자하고 있습니다. <br>
+                        이를 통해 지속적으로 생물 다양성의 상태를 파악하고, <br>
+                        멸종 위기 종의 보호 및 서식지 복원에 필요한 조치를 수행합니다. <br>
+                        또한, 생태학적 특성과 종의 상호작용에 대한 연구를 통해 보다 효과적인 <Br>
+                        보전 전략을 개발하고 구현하는 데 도움을 주고 있습니다.</p>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <hr>
+    <nav id="menubar">
+        <ul>
+            <li id="title"><a href="pj.html" target="_parent" style="text-align: center;">My Project</a></li>
+        </ul>
+    </nav>
+
+    <button class="btn-hover color-7" id="fixed" onclick="scrollToTop()">TOP</button>
+
+
+    <script>
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+    </script>
+    <script>
+        function collapse(element) {
+            var before = document.getElementsByClassName("active")[0]
+            if (before && document.getElementsByClassName("active")[0] != element) {
+                before.nextElementSibling.style.maxHeight = null;
+                before.classList.remove("active");
+            }
+            element.classList.toggle("active");
+
+            var content = element.nextElementSibling;
+            if (content.style.maxHeight != 0) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        }
+    </script>
+</body>
+
+</html>

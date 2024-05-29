@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>ENVIORNMENT - ZON</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    #menubar {
+      background: white;
+      height: 160px;
+    }
+
+    #menubar ul {
+      margin: 0;
+      text-align: center;
+      width: 100%;
+      font-size: 17px;
+      padding: 0px 0px;
+    }
+
+    #menubar ul li {
+      display: inline-block;
+      list-style-type: none;
+      padding: 50px;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+
+    #menubar ul li a {
+      color: black;
+      text-decoration: none;
+    }
+
+    #menubar ul li a:hover {
+      color: rgb(15, 29, 68);
+    }
+
+    #menubar1 {
+      background: rgb(51, 134, 167);
+      height: 40px;
+
+    }
+
+    #menubar1 ul {
+      margin: 0;
+      text-align: right;
+      width: 100%;
+      font-size: 17px;
+      padding: 0px 0px;
+    }
+
+    #menubar1 ul li {
+      display: inline-block;
+      list-style-type: none;
+      padding: 20px;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+
+    #menubar1 ul li a {
+      color: white;
+      text-decoration: none;
+    }
+
+    #menubar1 ul li a:hover {
+      color: rgb(12, 57, 75);
+    }
+
+    #menubar2 {
+      background: white;
+      height: 50px;
+
+    }
+
+    #menubar2 ul {
+      margin: 0;
+      text-align: center;
+      width: 100%;
+      font-size: 20px;
+      padding: 0px 0px;
+    }
+
+    #menubar2 ul li {
+      display: inline-block;
+      list-style-type: none;
+      padding: 15px;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+
+    #menubar2 ul li a {
+      color: black;
+      text-decoration: none;
+    }
+
+    #menubar2 ul li a:hover {
+      position: relative;
+      color: rgb(12, 57, 75);
+    }
+
+    #menubar2 ul li a:hover::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 2px;
+      background-color: rgb(12, 57, 75);
+    }
+
+    #title {
+      font-size: 40px;
+    }
+
+    #menubar3 {
+      background: white;
+      height: 50px;
+
+    }
+
+    #menubar3 ul {
+      margin: 0;
+      text-align: center;
+      width: 100%;
+      font-size: 20px;
+      padding: 0px 0px;
+    }
+
+    #menubar3 ul li {
+      display: inline-block;
+      list-style-type: none;
+      letter-spacing: 5px;
+      padding: 15px 150px;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+
+    #menubar3 ul li a {
+      color: black;
+      text-decoration: none;
+    }
+
+    #menubar3 ul li a:hover {
+      color: rgb(12, 57, 75);
+    }
+
+    #main {
+      margin: 20px 100px 0px 100px;
+      height: 500px;
+    }
+
+    #box {
+      display: inline-block;
+      width: 300px;
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 30px 50px 0px 0px;
+      transition: all 0.3s cubic-bezier(0.42, 0.0, 0.58, 1.0);
+    }
+
+    #box:hover {
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+      transform: translateY(-10px);
+    }
+
+    #box * {
+      padding: 10px;
+    }
+
+    #box .img {
+      display: block;
+      width: 100%;
+      padding: 0;
+    }
+
+    #box .heading {
+      font-size: 28px;
+    }
+
+    #box .data {
+      display: flex;
+      flex-direction: column;
+      font-size: 12px;
+      color: #666;
+    }
+
+    #box .data span {
+      padding: 0;
+    }
+
+    #box .data .date {
+      margin-bottom: 2px;
+    }
+
+    #box .data .user-id {
+      font-size: 16px;
+      color: #000;
+      font-weight: 600;
+    }
+
+    #box .texts {
+      font-size: 14px;
+      line-height: 18px;
+    }
+
+    .slider {
+      width: 1040px;
+      height: 580px;
+      position: relative;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    .slider input[type=radio] {
+      display: none;
+    }
+
+    ul.imgs {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    ul.imgs li {
+      position: absolute;
+      left: 640px;
+      transition-delay: 1s;
+      padding: 0;
+      margin: 0;
+    }
+
+    .bullets {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 20px;
+      z-index: 2;
+    }
+
+    .bullets label {
+      display: inline-block;
+      border-radius: 50%;
+      background-color: rgba(0, 0, 0, 0.55);
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+
+    .slider input[type=radio]:nth-child(1):checked~.bullets>label:nth-child(1) {
+      background-color: #fff;
+    }
+
+    .slider input[type=radio]:nth-child(2):checked~.bullets>label:nth-child(2) {
+      background-color: #fff;
+    }
+
+    .slider input[type=radio]:nth-child(3):checked~.bullets>label:nth-child(3) {
+      background-color: #fff;
+    }
+
+    .slider input[type=radio]:nth-child(4):checked~.bullets>label:nth-child(4) {
+      background-color: #fff;
+    }
+
+    .slider input[type=radio]:nth-child(1):checked~ul.imgs>li:nth-child(1) {
+      left: 0;
+      transition: 0.5s;
+      z-index: 1;
+    }
+
+    .slider input[type=radio]:nth-child(2):checked~ul.imgs>li:nth-child(2) {
+      left: 0;
+      transition: 0.5s;
+      z-index: 1;
+    }
+
+    .slider input[type=radio]:nth-child(3):checked~ul.imgs>li:nth-child(3) {
+      left: 0;
+      transition: 0.5s;
+      z-index: 1;
+    }
+
+    .slider input[type=radio]:nth-child(4):checked~ul.imgs>li:nth-child(4) {
+      left: 0;
+      transition: 0.5s;
+      z-index: 1;
+    }
+
+    .buttons {
+      margin: 10%;
+      text-align: center;
+    }
+
+    #fixed {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      width: 190px;
+      padding: 5px;
+
+    }
+
+
+    .btn-hover {
+      width: 200px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      cursor: pointer;
+      margin: 20px;
+      height: 55px;
+      text-align: center;
+      border: none;
+      background-size: 300% 100%;
+
+      border-radius: 50px;
+      -o-transition: all .4s ease-in-out;
+      -webkit-transition: all .4s ease-in-out;
+      transition: all .4s ease-in-out;
+    }
+
+    .btn-hover:hover {
+      background-position: 100% 0;
+      -o-transition: all .4s ease-in-out;
+      -webkit-transition: all .4s ease-in-out;
+      transition: all .4s ease-in-out;
+    }
+
+    .btn-hover:focus {
+      outline: none;
+    }
+
+    .btn-hover.color-7 {
+      background-image: linear-gradient(to right, #6253e1, #852D91, #A3A1FF, #F24645);
+      box-shadow: 0 4px 15px 0 rgba(126, 52, 161, 0.75);
+    }
+  </style>
+</head>
+
+<body>
+  <nav id="menubar1">
+    <ul>
+      <li><a href="https://www.unesco.org/en" target="_blank">Unesco</a></li> |
+      <li><a href="https://heritage.unesco.or.kr/" target="_blank">Kor. Unesco</a></li> |
+      <li><a href="https://www.unesco.or.kr/" target="_blank">UNESCO Korean Committee</a></li>
+    </ul>
+  </nav>
+
+  <nav id="menubar">
+    <ul>
+      <li id="title"><a href="pj.html" target="_parent" style="text-align: center;">Enviornment - Zon</a></li>
+    </ul>
+  </nav>
+  <hr>
+  <nav id="menubar2">
+    <ul>
+      <li><a href="amazon.html" target="_parent">Amazon</a></li>
+      <li><a href="map.html" target="_parent">Maps</a></li>
+      <li><a href="picture.html" target="_parent">Picture</a></li>
+    </ul>
+  </nav>
+  <hr>
+
+  <div class="slider">
+    <input type="radio" name="slide" id="slide1" checked>
+    <input type="radio" name="slide" id="slide2">
+    <input type="radio" name="slide" id="slide3">
+    <input type="radio" name="slide" id="slide4">
+    <ul id="imgholder" class="imgs">
+      <li><img src="C:\Users\aeji4\OneDrive\바탕 화면\웹프\project\ama1.png"></li>
+      <li><img src="C:\Users\aeji4\OneDrive\바탕 화면\웹프\project\ama4.png"></li>
+      <li><img src="C:\Users\aeji4\OneDrive\바탕 화면\웹프\project\ama5.png"></li>
+      <li><img src="C:\Users\aeji4\OneDrive\바탕 화면\웹프\project\ama6.png"></li>
+    </ul>
+    <div class="bullets">
+      <label for="slide1">&nbsp;</label>
+      <label for="slide2">&nbsp;</label>
+      <label for="slide3">&nbsp;</label>
+      <label for="slide4">&nbsp;</label>
+    </div>
+  </div>
+  <br>
+  <hr>
+
+  <div id="box" style="margin-left: 80px ;">
+    <img class="img" src="C:\Users\aeji4\OneDrive\바탕 화면\웹프\project\grand.png" alt="">
+    <h1 class="heading">GRAND CANYON</h1>
+    <div class="data">
+      <span class="date">등재연도 : 1979</span>
+      <span class="user-id">유산면적 : 493,077㏊</span>
+    </div>
+    <p class="texts">
+      위치 : Counties of Coconino and Mohave in the State of Arizona
+    </p>
+  </div>
+
+  <div id="box">
+    <img class="img" src="C:\Users\aeji4\OneDrive\바탕 화면\웹프\project\dollo.png" alt="">
+    <h1 class="heading">DOLOMITES</h1>
+    <div class="data">
+      <span class="date">등재연도 : 2009</span>
+      <span class="user-id">유산면적 : 141,903㏊</span>
+    </div>
+    <p class="texts">
+      위치 : 32023 Rocca Pietore, 벨루노 이탈리아
+    </p>
+  </div>
+
+  <div id="box">
+    <img class="img" src="C:\Users\aeji4\OneDrive\바탕 화면\웹프\project\jejuu.png" alt="">
+    <h1 class="heading">JEJU ISLAND</h1>
+    <div class="data">
+      <span class="date">등재연도 : 2007</span>
+      <span class="user-id">유산면적 : 9,475㏊</span>
+    </div>
+    <p class="texts">
+      위치 : 제주특별자치도 제주시
+    </p>
+  </div>
+  <div id="box">
+    <img class="img" src="C:\Users\aeji4\OneDrive\바탕 화면\웹프\project\serangg.png" alt="">
+    <h1 class="heading">SERENGETI</h1>
+    <div class="data">
+      <span class="date">등재연도 : 1981</span>
+      <span class="user-id">유산면적 : 1,476,300㏊</span>
+    </div>
+    <p class="texts">
+      위치 : 마라, 아루샤, 신양가 주(Mara, Arusha, and Shinyanga Provinces)<br>
+    </p>
+  </div>
+  <div id="box">
+    <img class="img" src="C:\Users\aeji4\OneDrive\바탕 화면\웹프\project\sichann.png" alt="">
+    <h1 class="heading">SICHAN PANDA SANCTUARIES</h1>
+    <div class="data">
+      <span class="date">등재연도 : 2006년</span>
+      <span class="user-id">유산면적 : 924,500㏊</span>
+    </div>
+    <p class="texts">
+      위치 : 쓰촨성(四川省, Sichuan Province)
+    </p>
+  </div>
+
+  <br><br>
+  <hr>
+  <nav id="menubar">
+    <ul>
+      <li id="title"><a href="pj.html" target="_parent" style="text-align: center;">My Project</a></li>
+    </ul>
+  </nav>
+
+  <button class="btn-hover color-7" id="fixed" onclick="scrollToTop()">TOP</button>
+
+
+  <script>
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      var slideCount = $('.slider input[type=radio]').length;
+      var currentSlide = 1;
+
+      function nextSlide() {
+        currentSlide++;
+        if (currentSlide > slideCount) {
+          currentSlide = 1;
+        }
+        $('input[name="slide"]').prop('checked', false);
+        $('#slide' + currentSlide).prop('checked', true);
+      }
+
+      setInterval(nextSlide, 3000);
+    });
+  </script>
+</body>
+
+</html>

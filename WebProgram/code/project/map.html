@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZON - MAP</title>
+    <style>
+        .video-container {
+            display: none;
+        }
+
+        #menubar {
+            background: white;
+            height: 160px;
+        }
+
+        #menubar ul {
+            margin: 0;
+            text-align: center;
+            width: 100%;
+            font-size: 17px;
+            padding: 0px 0px;
+        }
+
+        #menubar ul li {
+            display: inline-block;
+            list-style-type: none;
+            padding: 50px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+
+        #menubar ul li a {
+            color: black;
+            text-decoration: none;
+        }
+
+        #menubar ul li a:hover {
+            color: rgb(15, 29, 68);
+        }
+
+        #menubar1 {
+            background: rgb(51, 134, 167);
+            height: 40px;
+        }
+
+        #menubar1 ul {
+            margin: 0;
+            text-align: right;
+            width: 100%;
+            font-size: 17px;
+            padding: 0px 0px;
+        }
+
+        #menubar1 ul li {
+            display: inline-block;
+            list-style-type: none;
+            padding: 20px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+
+        #menubar1 ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        #menubar1 ul li a:hover {
+            color: rgb(12, 57, 75);
+        }
+
+        #menubar2 {
+            background: white;
+            height: 50px;
+
+        }
+
+        #menubar2 ul {
+            margin: 0;
+            text-align: center;
+            width: 100%;
+            font-size: 20px;
+            padding: 0px 0px;
+        }
+
+        #menubar2 ul li {
+            display: inline-block;
+            list-style-type: none;
+            padding: 15px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+
+        #menubar2 ul li a {
+            color: black;
+            text-decoration: none;
+        }
+
+        #menubar2 ul li a:hover {
+            position: relative;
+            color: rgb(12, 57, 75);
+        }
+
+        #menubar2 ul li a:hover::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background-color: rgb(12, 57, 75);
+        }
+
+        #title {
+            font-size: 40px;
+        }
+
+        .map img {
+            width: 100%;
+            height: 500px;
+            border-radius: 20px;
+        }
+
+        #div {
+            display: inline-block;
+            border-radius: 20px;
+            border: 3px solid black;
+        }
+
+        #diviframe {
+            border-radius: 20px;
+            width: 930px;
+            height: 500px;
+        }
+
+
+        #div>p {
+            display: inline-block;
+            position: absolute;
+            height: 25px;
+            width: 37px;
+            background: transparent;
+            color: blueviolet;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        h1 {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+
+        #fixed {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            width: 190px;
+            padding: 5px;
+        }
+
+        #coch:hover {
+            color: red;
+        }
+
+        #coch1:hover {
+            color: red;
+        }
+
+        .three h1 {
+            font-size: 28px;
+            font-weight: 500;
+            letter-spacing: 0;
+            line-height: 1.5em;
+            padding-bottom: 15px;
+            position: relative;
+        }
+
+        .three h1:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 5px;
+            width: 55px;
+            background-color: #111;
+        }
+
+        .three h1:after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 2px;
+            height: 1px;
+            width: 95%;
+            max-width: 255px;
+            background-color: #333;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&display=swap');
+
+        .tabs {
+            font-family: "Raleway";
+            top: 50%;
+            left: 50%;
+            width: 1000px;
+            height: 280px;
+            background: #858080;
+            padding: 20px 30px;
+            overflow: hidden;
+            border-radius: 50px;
+            box-shadow: 5px 10px 5px #ccc;
+        }
+
+        .tabs .tab-header {
+            height: 60px;
+            display: flex;
+            align-items: center;
+        }
+
+        .tabs .tab-header>div {
+            width: calc(100% / 4);
+            text-align: center;
+            color: #000000;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 14px;
+            text-transform: uppercase;
+            outline: none;
+        }
+
+        .tabs .tab-header>div>i {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .tabs .tab-header>div.active {
+            color: #00acee;
+        }
+
+        .tabs .tab-indicator {
+            position: relative;
+            width: calc(100% / 6);
+            height: 5px;
+            background: #00acee;
+            left: 0px;
+            border-radius: 5px;
+            transition: all 500ms ease-in-out;
+        }
+
+        .tabs .tab-body {
+            position: relative;
+            height: calc(100% - 60px);
+            padding: 10px 5px;
+        }
+
+        .tabs .tab-body>div {
+            position: absolute;
+            top: -200%;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: opacity 500ms ease-in-out 0ms,
+                transform 500ms ease-in-out 0ms;
+        }
+
+        .tabs .tab-body>div.active {
+            top: 0px;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .buttons {
+            margin: 10%;
+            text-align: center;
+        }
+
+        .btn-hover {
+            width: 200px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            margin: 20px;
+            height: 55px;
+            text-align: center;
+            border: none;
+            background-size: 300% 100%;
+
+            border-radius: 50px;
+            -o-transition: all .4s ease-in-out;
+            -webkit-transition: all .4s ease-in-out;
+            transition: all .4s ease-in-out;
+        }
+
+        .btn-hover:hover {
+            background-position: 100% 0;
+            -o-transition: all .4s ease-in-out;
+            -webkit-transition: all .4s ease-in-out;
+            transition: all .4s ease-in-out;
+        }
+
+        .btn-hover:focus {
+            outline: none;
+        }
+
+        .btn-hover.color-7 {
+            background-image: linear-gradient(to right, #6253e1, #852D91, #A3A1FF, #F24645);
+            box-shadow: 0 4px 15px 0 rgba(126, 52, 161, 0.75);
+        }
+
+        @keyframes anime_textup {
+            0% {
+                top: 0;
+            }
+
+            20% {
+                top: -0.2rem;
+            }
+
+            40% {
+                top: 0
+            }
+
+            60% {
+                top: 0
+            }
+
+            80% {
+                top: 0
+            }
+
+            100% {
+                top: 0
+            }
+        }
+
+        .test_obj span {
+            position: relative;
+            animation: anime_textup 1.5s infinite;
+        }
+
+        .test_obj span:nth-of-type(1) {
+            animation-delay: .1s;
+        }
+
+        .test_obj span:nth-of-type(2) {
+            animation-delay: .2s;
+        }
+
+        .test_obj span:nth-of-type(3) {
+            animation-delay: .3s;
+        }
+
+        .test_obj span:nth-of-type(4) {
+            animation-delay: .4s;
+        }
+
+        .test_obj span:nth-of-type(5) {
+            animation-delay: .5s;
+        }
+
+        .test_obj span:nth-of-type(6) {
+            animation-delay: .6s;
+        }
+
+        .test_obj span:nth-of-type(7) {
+            animation-delay: .7s;
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav id="menubar1">
+        <ul>
+            <li><a href="https://www.unesco.org/en" target="_blank">Unesco</a></li> |
+            <li><a href="https://heritage.unesco.or.kr/" target="_blank">Kor. Unesco</a></li> |
+            <li><a href="https://www.unesco.or.kr/" target="_blank">UNESCO Korean Committee</a></li>
+          </ul>
+    </nav>
+    <nav id="menubar">
+        <ul>
+            <li id="title"><a href="pj.html" target="_parent" style="text-align: center;">Enviornment - Zon</a></li>
+        </ul>
+    </nav>
+    <hr>
+    <nav id="menubar2">
+        <ul>
+            <li><a href="amazon.html" target="_parent">Amazon</a></li>
+            <li><a href="map.html" target="_parent">Maps</a></li>
+            <li><a href="picture.html" target="_parent">Picture</a></li>
+        </ul>
+    </nav>
+    <hr>
+
+
+    <br>
+    <div class="map" id="div">
+        <img src="C:\Users\aeji4\OneDrive\바탕 화면\웹프 완\코드\project\map.png">
+        <p style="left:360px; top:520px"><a href="#jeju" onclick="playVideo('video1')" id="coch1">&nbsp;●jeju</a></p>
+        <p style="left:130px; top:630px"><a href="#serang" onclick="playVideo('video2')" id="coch1">&nbsp;●serang</a>
+        </p>
+        <p style="left:670px; top:500px"><a href="#grand" onclick="playVideo('video3')" id="coch1">&nbsp;●grand</a></p>
+        <p style="left:320px; top:540px"><a href="#sichan" onclick="playVideo('video4')" id="coch1">&nbsp;●shichan</a>
+        </p>
+        <p style="left:60px; top:480px"><a href="#dolo" onclick="playVideo('video5')" id="coch1">&nbsp;●dolo</a></p>
+        <p style="left:820px; top:640px"><a href="#amazon" onclick="playVideo('video6')" id="coch1">&nbsp;●amazon</a>
+        </p>
+    </div>
+
+    <div class="video-container" id="video1">
+        <iframe width="560" height="315" id="diviframe" src="https://www.youtube.com/embed/k07tdd2C87A"
+            title="YouTube video player">
+        </iframe>
+    </div>
+    <div class="video-container" id="video2">
+        <iframe width="560" height="315" id="diviframe"
+            src="C:\Users\aeji4\OneDrive\바탕 화면\웹프\project\불은 사냥을 더 쉽게 만들 뿐... 얼룩말 잡아먹는 사자들 l 야생의 운명 - 세렝게티 대이동 l KBS 스페셜 100425 방송.mp4"
+            autoplay muted>
+        </iframe>
+    </div>
+
+    <div class="video-container" id="video3">
+        <iframe width="560" height="315" id="diviframe"
+            src="C:\Users\aeji4\OneDrive\바탕 화면\웹프\project\Arizona 4K Relaxation Film _ Grand Canyon National Park _ Sedona Arizona 4K _ Relaxing Music.mp4"></iframe>
+    </div>
+    <div class="video-container" id="video4">
+        <iframe width="560" height="315" id="diviframe"
+            src="C:\Users\aeji4\OneDrive\바탕 화면\웹프\project\[NATURE]  The panda is protected in China.,창사특집 UHD 다큐멘터리 곰 20181203.mp4"></iframe>
+    </div>
+    <div class="video-container" id="video5">
+        <iframe width="560" height="315" id="diviframe"
+            src="C:\Users\aeji4\OneDrive\바탕 화면\웹프\project\Dolomites, Italy  [Amazing Places 4K].mp4"></iframe>
+    </div>
+    <div class="video-container" id="video6">
+        <iframe width="560" height="315" id="diviframe"
+            src="C:\Users\aeji4\OneDrive\바탕 화면\웹프\project\Amazon 4k - The World’s Largest Tropical Rainforest Part 2 _ Jungle Sounds _ Scenic Relaxation Film.mp4"></iframe>
+    </div>
+    <br><br>
+    <table border="0">
+        <tr>
+            <td>
+                <div class="tabs">
+                    <div class="tab-header">
+                        <div class="active">
+                            <i class="fa fa-code"></i> Grand
+                        </div>
+                        <div>
+                            <i class="fa fa-pencil-square-o"></i> Serang
+                        </div>
+                        <div>
+                            <i class="fa fa-bar-chart"></i> Shichan
+                        </div>
+                        <div>
+                            <i class="fa fa-envelope-o"></i> Jeju
+                        </div>
+                        <div>
+                            <i class="fa fa-envelope-o" id="jeju"></i> Dolo
+                        </div>
+                        <div>
+                            <i class="fa fa-envelope-o"></i> Amazon
+                        </div>
+                    </div>
+                    <div class="tab-indicator"></div>
+                    <div class="tab-body">
+                        <div class="active">
+                            <h2>그랜드 캐니언 국립공원</h2>
+                            <p>콜로라도 강에 의한 침식으로 깎여 있는 그랜드 캐니언은 깊이가 약 1,500m나 되는 세계에서 가장 경관이 뛰어난 협곡이다.
+                                애리조나 주에 있으며 그랜드 캐니언 국립공원(Grand Canyon National Park)을 가로지른다.
+                                그랜드캐니언의 수평 단층은 20억 년 전 과거의 지질학 역사를 거슬러 올라간다. 이곳에서는 또한 선사 시대부터 가혹한 환경에
+                                적응해 온 인간의 역사도 추적해 볼 수 있다.</p>
+                        </div>
+                        <div>
+                            <h2>세렝게티 국립공원</h2>
+                            <p>세렝게티(Serengeti)의 광활한 평원의 면적이 1,500,000㏊이며, 사바나(savannah) 지역에 있다. 누(wildebeest),
+                                가젤(gazelle), 얼룩말(zebra) 등의 초식동물 무리가 매년 마르지 않는 물웅덩이를 찾아 대규모로 이동하고,
+                                그 뒤를 따라 포식자들이 이동하는 모습은 매우 인상적이다.</p>
+                        </div>
+                        <div>
+                            <h2>쓰촨 자이언트판다 보호 구역</h2>
+                            <p>쓰촨 자이언트판다 보호 구역(Sichuan Giant Panda Sanctuaries - Wolong, Mt Siguniang and Jiajin
+                                Mountains)에는 멸종 위기에
+                                처한 전 세계 판다의 30% 이상이 서식한다. 면적은 924,500㏊이고 충라이(邛崃) 산맥과 지아진(夹金) 산에 일곱 개의 자연보호 지역과
+                                아홉 개의 자연공원이 있다. 이 보호 구역은 현재 남아 있는 자이언트판다 서식지 중 가장 규모가 크며, 신생대 제3기 고대 열대림의 유적이다.
+                                이곳은 또한 자이언트판다의 가장 중요한 포획번식지이며, 너구리판다(red panda), 눈표범(snow leopard), 구름무늬표범(clouded
+                                leopard) 등
+                                다른 멸종 위기 동물의 서식지이기도 하다. 이 보호 구역은 열대우림 이외의 지역 중에서는 식물의 다양성이 가장 높은 곳의 하나로서 1,000속(屬)
+                                이상, 5,000~6,000종(種)의 식물이 서식한다.</p>
+                        </div>
+                        <div>
+                            <h2>제주 화산섬과 용암 동굴</h2>
+                            <p>총 면적 18,846㏊ 규모의 제주 화산섬과 용암 동굴(Jeju Volcanic Island and Lava Tubes)은 천장과 바닥이 다양한 색의 탄산염
+                                동굴생성물로
+                                이루어지고 어두운 용암 벽으로 둘러싸여 세계에서 가장 아름다운 동굴계로 손꼽히는 거문오름용암동굴계, 바다에서 솟아올라 극적인 장관을 연출하는
+                                요새 모양의 성산일출봉 응회구(tuff cone), 그리고 폭포와 다양한 모양의 암석, 물이 고인 분화구인 백록담이 있는 산으로, 대한민국에서 가장 높은
+                                산인 한라산 등 세 구역으로 이루어져 있다. 빼어난 아름다움을 자랑하는 이 유산은 지질학적 특성과 발전 과정 등 지구의 역사를 잘 보여 준다</p>
+                        </div>
+                        <div>
+                            <h2>돌로미티 산맥</h2>
+                            <p>알프스 산맥의 일부인 북부 이탈리아의 돌로미티 산맥(The Dolomite)은 높이가 3,000m 이상인 봉우리가 18개 있고 총 면적은 141,903㏊이다.
+                                가파른 수직 절벽과 폭이 좁고 깊은 계곡이 길게 형성된 돌로미티 산맥은 세계에서 가장 아름다운 산악 경관을 연출한다. 9개 지역이 연속된 이 유산은
+                                뾰족한 꼭대기와 뾰족한 산봉우리, 암벽이 두드러지는 장엄한 경관의 다양성을 보여 주며, 빙하기 지형과 카르스트 지형도 포함하고 있어 지형학으로
+                                국제적인 중요성을 지닌다. 유산은 또한 화석 기록과 함께 중생대 탄산염 대지(carbonate platform) 시스템이 잘 보존되어 있는 가장 훌륭한 예의
+                                하나이다.</p>
+                        </div>
+                        <div>
+                            <h2>아마존</h2>
+                            <p>아마존은 세계에서 가장 넓고, 가장 다양한 생물이 사는 열대 우림입니다. 이곳은 우리나라 넓이의 70배 정도나 된다고 하니 얼마나 넓은지 그
+                                넓이를 짐작할 수 있습니다. 지금부터 지구의 허파라고 불리는 아마존에 대해 알아봅시다.
+                                아마존은 지구에서 만들어지는 산소의 약 아마존 정도를 생산해 내는 곳으로 지구의 허파라고도 불립니다. 이렇게 많은 양의 산소를 생산
+                                해낼 수 있는 것은 크고 작은 다양한 식물이 거대한 숲을 이루고 있기 때문이지요. 아마존에는 고무가 나오는 나무, 줄기를 자르면 물이 나오는 나무, 가늘게
+                                잘라서 불에 태우면 소금이 나오는 나무 등 신기한 나무가 많이 있답니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="test_obj" id="title" style="text-align: center; margin-left:300px">
+                    <span>U</span>
+                    <span>n</span>
+                    <span>e</span>
+                    <span>s</span>
+                    <span>c</span>
+                    <span>o</span>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <br>
+    <hr>
+    <nav id="menubar">
+        <ul>
+            <li id="title"><a href="pj.html" target="_parent" style="text-align: center;">My Project</a></li>
+        </ul>
+    </nav>
+
+    <script>
+        function playVideo(videoId) {
+            // 모든 비디오 숨기기
+            var videos = document.getElementsByClassName('video-container');
+            for (var i = 0; i < videos.length; i++) {
+                videos[i].style.display = 'none';
+            }
+
+            // 선택한 비디오 표시
+            var video = document.getElementById(videoId);
+            video.style.display = 'inline-block';
+        }
+    </script>
+
+
+    <button class="btn-hover color-7" id="fixed" onclick="scrollToTop()">TOP</button>
+
+
+    <script>
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+    </script>
+    <script>
+        let tabHeader = document.getElementsByClassName("tab-header")[0];
+        let tabIndicator = document.getElementsByClassName("tab-indicator")[0];
+        let tabBody = document.getElementsByClassName("tab-body")[0];
+
+        let tabsPane = tabHeader.getElementsByTagName("div");
+
+        for (let i = 0; i < tabsPane.length; i++) {
+            tabsPane[i].addEventListener("click", function () {
+                tabHeader.getElementsByClassName("active")[0].classList.remove("active");
+                tabsPane[i].classList.add("active");
+                tabBody.getElementsByClassName("active")[0].classList.remove("active");
+                tabBody.getElementsByTagName("div")[i].classList.add("active");
+
+                tabIndicator.style.left = `calc(calc(100% / 6) * ${i})`;
+            });
+        }
+    </script>
+</body>
+
+</html>
